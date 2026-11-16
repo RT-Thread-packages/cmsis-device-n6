@@ -9,7 +9,7 @@ cwd = GetCurrentDir()
 
 # Initialize include paths and source files list
 path = [os.path.join(cwd, 'Include')]
-src = [os.path.join(cwd, 'Source', 'Templates', 'system_stm32n6xx_s.c')]
+src = [os.path.join('Source', 'Templates', 'system_stm32n6xx_s.c')]
 
 # Map microcontroller units (MCUs) to the platform-independent startup basename.
 # GCC/IAR use the assembly template; Arm Compiler uses the C template.
@@ -27,13 +27,13 @@ for mcu, startup_basename in mcu_startup_basenames.items():
     if mcu in cpp_defines_list:
         if rtconfig.PLATFORM in ['gcc', 'llvm-arm']:
             startup_file = startup_basename + '.s'
-            src += [os.path.join(cwd, 'Source', 'Templates', 'gcc', startup_file)]
+            src += [os.path.join('Source', 'Templates', 'gcc', startup_file)]
         elif rtconfig.PLATFORM in ['armcc', 'armclang']:
             startup_file = startup_basename + '.c'
-            src += [os.path.join(cwd, 'Source', 'Templates', 'arm', startup_file)]
+            src += [os.path.join('Source', 'Templates', 'arm', startup_file)]
         elif rtconfig.PLATFORM in ['iccarm']:
             startup_file = startup_basename + '.s'
-            src += [os.path.join(cwd, 'Source', 'Templates', 'iar', startup_file)]
+            src += [os.path.join('Source', 'Templates', 'iar', startup_file)]
         break
 
 # Define the build group
